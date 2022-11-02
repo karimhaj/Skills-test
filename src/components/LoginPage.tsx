@@ -49,12 +49,14 @@ const theme = createTheme(themeOptions);
 
 export default function SignIn() {
 
+    const [success, setSuccess] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    setSuccess(true)
     console.log({
       username: data.get('username'),
       password: data.get('password'),
@@ -63,7 +65,11 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+
+    { success ?
+    <div>You logged in!</div>
+    :
+      (<Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -133,7 +139,7 @@ export default function SignIn() {
           </Box>
         </Box>
         {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
-      </Container>
+      </Container>)}
     </ThemeProvider>
   );
 }

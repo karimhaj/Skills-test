@@ -32,8 +32,8 @@ export default function SignIn() {
       formState: {errors} 
     } = useForm({
       defaultValues:{
-        username: 'username', 
-        password: 'password'
+        username: '', 
+        password: ''
       }
     }); 
     //const [success, setSuccess] = useState(false);
@@ -53,7 +53,7 @@ export default function SignIn() {
             border: '1px solid rgb(200,200,200)',
             padding: '20px 20px 50px',
             borderRadius: '10px',
-            marginTop: '30px',
+            marginTop: '50px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -103,10 +103,10 @@ export default function SignIn() {
               }}
             />
             <p>{errors.password?.message}</p>
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="secondary" />}
               label="Remember"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth

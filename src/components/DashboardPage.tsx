@@ -13,27 +13,6 @@ interface personObjTypes{
   children?: JSX.Element|JSX.Element[];
 }
 
-//inline styles
-
-// const titleSectionStyle={
-//   border: '1px solid gray',
-//   padding: '10px',
-//   borderRadius: '10px'
-// }
-
-// const cardStyle={
-//   border: '1px solid gray',
-//   borderRadius: '10px', 
-//   height: '200px'
-// }
-
-// const dyagramStyle={
-//   border: '1px solid gray',
-//   borderRadius: '10px', 
-//   height: '500px'
-// }
-
-
 const themeOptions = {
     palette: {
       type: 'light',
@@ -48,7 +27,7 @@ const themeOptions = {
 
 const theme = createTheme(themeOptions);
 
-function Dashboard (){
+const Dashboard = () =>{
 return (<div>
     <ThemeProvider theme={theme}>
     <CssBaseline />

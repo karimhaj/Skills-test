@@ -1,8 +1,21 @@
 import React from 'react';
-import {   BarChart, Bar, LineChart, Line, CartesianGrid, YAxis, XAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {   
+  LineChart, 
+  Line, 
+  CartesianGrid, 
+  YAxis, 
+  XAxis, 
+  Tooltip, 
+  Legend, 
+  ResponsiveContainer, 
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis } from 'recharts';
 import { CssBaseline, Grid, createTheme, ThemeProvider, Box, Typography } from '@mui/material';
 import peopleList from '../data/contactList';
-import { chartData } from '../data/chartData'; 
+import { lineChartData, radarChartData } from '../data/chartData'; 
 
 
 interface personObjTypes{
@@ -56,19 +69,19 @@ return (<div>
         <Typography component='h1' variant='h4' sx={{color: 'primary.main'}}>
             Dashboard
         </Typography>
-        <Typography>
-            Payment updates
+        <Typography component='p'>
+            our work, our priority
         </Typography>
     </div>
   </Grid>
   <Grid item xs={12} sm={6} md={8}>
 
   </Grid>
-  <Grid item xs={12} sm={12} md={8}>
-  <div style={{border: '2px solid black'}}>
-  <LineChart width={500} height={500} data={chartData}>
-      <Line type="monotone" dataKey="uv" stroke="red" />
-      <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+  <Grid item xs={12} sm={12} md={6}>
+  <div>
+  <LineChart width={700} height={500} data={lineChartData}>
+      <Line type="monotone" dataKey="firstCompany" stroke="red" />
+      <Line type="monotone" dataKey="secondCompany" stroke="#8884d8" />
       <CartesianGrid stroke="gray" />
       <YAxis />
       <Tooltip />
@@ -77,9 +90,30 @@ return (<div>
     </LineChart>
     </div>
   </Grid>
-  <Grid item xs={12} sm={6} md={4}>
- <h1> no data found </h1>
+  <Grid item xs={12} sm={6} md={6}>
+    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+ <RadarChart
+      cx={300}
+      cy={250}
+      outerRadius={150}
+      width={600}
+      height={500}
+      data={radarChartData}
+    >
+      <PolarGrid />
+      <PolarAngleAxis dataKey="subject" />
+      <PolarRadiusAxis />
+      <Radar
+        name="Mike"
+        dataKey="A"
+        stroke="#8884d8"
+        fill="#8884d8"
+        fillOpacity={0.6}
+      />
+    </RadarChart>
+    </div>
  </Grid>
+
   <Grid item xs={12} sm={12} md={12}>
   <div style={{display: 'flex'}}>
   {

@@ -6,8 +6,6 @@ import DashboardPage from './components/DashboardPage';
 
 function App() {
   return (<>
-    <Link to='/dashboard'>dashboard page</Link>
-    <Link to='/' style={{marginLeft: '50px'}}>login page</Link>
     <Routes>
       <Route path='/' element={ <LoginPage />} />
       <Route path='/dashboard' element={ <DashboardPage />} />

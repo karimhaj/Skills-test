@@ -25,7 +25,7 @@ const themeOptions = {
 
 const theme = createTheme(themeOptions);
 
-export default function SignIn() {
+const LoginPage = () => {
 
     const {register, 
       handleSubmit, 
@@ -121,3 +121,6 @@ export default function SignIn() {
     </Container>
     </ThemeProvider>));
 }
+
+
+export default LoginPage; 

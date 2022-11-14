@@ -1,25 +1,32 @@
-import React from 'react'; 
+import React from 'react';
+import {   
+  LineChart, 
+  Line, 
+  CartesianGrid, 
+  YAxis, 
+  XAxis, 
+  Tooltip, 
+  Legend, 
+  ResponsiveContainer, 
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis } from 'recharts';
 import { CssBaseline, Grid, createTheme, ThemeProvider, Box, Typography } from '@mui/material';
+import peopleList from '../data/contactList';
+import { lineChartData, radarChartData } from '../data/chartData'; 
 
-//inline styles
 
-const titleSectionStyle={
-  border: '1px solid gray',
-  padding: '10px',
-  borderRadius: '10px'
+interface personObjTypes{
+  name?: string,
+  id?: number,
+  job?: string,
+  number?: string,
+  picture?: string,
+  children?: JSX.Element|JSX.Element[];
 }
 
-const cardStyle={
-  border: '1px solid gray',
-  borderRadius: '10px', 
-  height: '200px'
-}
-
-const dyagramStyle={
-  border: '1px solid gray',
-  borderRadius: '10px', 
-  height: '500px'
-}
 
 const themeOptions = {
     palette: {
@@ -35,58 +42,132 @@ const themeOptions = {
 
 const theme = createTheme(themeOptions);
 
-function Dashboard (){
+const Dashboard = () =>{
 return (<div>
     <ThemeProvider theme={theme}>
     <CssBaseline />
     <Box sx={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
             margin: '50px'
     }}>
+{/*
+    <h1 style={{marginBottom: '0px'}}>Dashboard Page</h1>
+    <p style={{marginTop: '0px'}}>subtitle for the dash</p> */}
 
-    <Grid container 
+    <div style={{display: 'flex'}}>
+
+        </div>
+
+    <Grid container
     direction='row'
     justifyContent='center'
     alignItems='center'
     spacing={4}>
     <Grid item xs={12} sm={6} md={4}>
-    <div style={titleSectionStyle}>
+    <div>
         <Typography component='h1' variant='h4' sx={{color: 'primary.main'}}>
             Dashboard
         </Typography>
-        <Typography>
-            Payment updates
+        <Typography component='p'>
+            our work, our priority
         </Typography>
     </div>
   </Grid>
-  {/* <Grid item xs={12} sm={6} md={8}>
-    <div style={titleSectionStyle}>xs=6 md=4</div>
-  </Grid>
-  <Grid item xs={12} sm={12} md={8}>
-    <div style={dyagramStyle}>xs=6 md=</div>
-  </Grid>
-  <Grid item xs={12} sm={6} md={4}>
-    <div style={dyagramStyle}>xs=6 md=8</div>
-  </Grid>
+  <Grid item xs={12} sm={6} md={8}>
 
-  <Grid item xs={12} sm={6} md={4}>
-  <div style={cardStyle}>card1</div>
   </Grid>
-
-  <Grid item xs={12} sm={6} md={4}>
-  <div style={cardStyle}>card1</div>
+  <Grid item xs={12} sm={12} md={6}>
+  <div>
+  <LineChart width={700} height={500} data={lineChartData}>
+      <Line type="monotone" dataKey="firstCompany" stroke="red" />
+      <Line type="monotone" dataKey="secondCompany" stroke="#8884d8" />
+      <CartesianGrid stroke="gray" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <XAxis dataKey="name" />
+    </LineChart>
+    </div>
   </Grid>
+  <Grid item xs={12} sm={6} md={6}>
+    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+ <RadarChart
+      cx={300}
+      cy={250}
+      outerRadius={150}
+      width={600}
+      height={500}
+      data={radarChartData}
+    >
+      <PolarGrid />
+      <PolarAngleAxis dataKey="subject" />
+      <PolarRadiusAxis />
+      <Radar
+        name="Mike"
+        dataKey="A"
+        stroke="#8884d8"
+        fill="#8884d8"
+        fillOpacity={0.6}
+      />
+    </RadarChart>
+    </div>
+ </Grid>
 
-  <Grid item xs={12} sm={6} md={4}>
-  <div style={cardStyle}>card1</div>
-  </Grid> */}
+  <Grid item xs={12} sm={12} md={12}>
+  <div style={{display: 'flex'}}>
+  {
+      peopleList.map((item)=>
+        <Card
+        key={`${item.id}`}
+        name={item.name}
+        picture={item.picture}
+        job={item.job}
+        number={item.number}
+        />)
+    }
+    </div>
+  </Grid>
 
     </Grid>
+
     </Box>
     </ThemeProvider>
 </div>)
 }
 
-export default Dashboard; 
+
+
+function Card (props: personObjTypes){
+
+
+  return(
+    <div style={{
+      backgroundColor: 'rgb(230,235,240)',
+      borderBottom: '3px solid rgb(200,200,200)',
+      minWidth: '200px',
+      maxWidth: '200px',
+      height: '200px',
+      padding: '15px',
+      margin: '10px',
+      borderRadius: '10px'}}>
+      <div style={{display:'flex', justifyContent: 'space-between'}}>
+
+        <div>
+      <h2 style={{opacity: '90%'}}>{props.name}</h2>
+      <p style={{opacity: '70%'}}>{props.job}</p>
+      </div>
+
+      <div style={{width:'50px', height:'50px', borderRadius:'50px'}}>
+      <img src={props.picture} alt='propic' style={{width: '50px', borderRadius: '50px', objectFit: 'contain', border: '2px solid rgb(255,255,255)'}}/>
+      </div>
+
+      </div>
+      <p>Phone: {props.number} </p>
+    </div>
+  )
+}
+
+
+
+export default Dashboard;

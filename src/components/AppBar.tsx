@@ -49,7 +49,7 @@ const ResponsiveAppBar = () =>{
               textDecoration: "none"
             }}
           >
-            APPBAR
+            SKILL TEST
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

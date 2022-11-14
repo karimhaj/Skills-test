@@ -65,20 +65,27 @@ return (<div>
     alignItems='center'
     spacing={4}>
     <Grid item xs={12} sm={6} md={4}>
-    <div>
+    <Box sx={{
+      borderBottom: '3px solid rgb(72, 61, 139)',
+      borderLeft: '3px solid rgb(72, 61, 139)',
+      backgroundColor: 'rgb(247, 245, 255)',
+      padding: '10px 30px 10px 10px',
+      borderRadius: '15px',
+      width: 'max-content'
+    }}>
         <Typography component='h1' variant='h4' sx={{color: 'primary.main'}}>
             Dashboard
         </Typography>
-        <Typography component='p'>
+        <Typography component='p' sx={{color: 'primary.main', opacity: '80%'}}>
             our work, our priority
         </Typography>
-    </div>
+    </Box>
   </Grid>
   <Grid item xs={12} sm={6} md={8}>
 
   </Grid>
   <Grid item xs={12} sm={12} md={6}>
-  <div>
+  <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
   <LineChart width={700} height={500} data={lineChartData}>
       <Line type="monotone" dataKey="firstCompany" stroke="red" />
       <Line type="monotone" dataKey="secondCompany" stroke="#8884d8" />
@@ -115,7 +122,11 @@ return (<div>
  </Grid>
 
   <Grid item xs={12} sm={12} md={12}>
-  <div style={{display: 'flex'}}>
+  <Box sx={{display:{md: 'flex', xs: 'flex'}, 
+  flexDirection:{md: 'row', xs: 'column'}, 
+  alignItem:{md: 'center', xs: 'center'},
+  justifyContent:{md: 'center', xs: 'center'}
+   }}>
   {
       peopleList.map((item)=>
         <Card
@@ -126,7 +137,7 @@ return (<div>
         number={item.number}
         />)
     }
-    </div>
+    </Box>
   </Grid>
 
     </Grid>
@@ -143,8 +154,9 @@ function Card (props: personObjTypes){
 
   return(
     <div style={{
-      backgroundColor: 'rgb(230,235,240)',
-      borderBottom: '3px solid rgb(200,200,200)',
+      backgroundColor: 'rgb(247, 245, 255)',
+      borderBottom: '3px solid rgb(72, 61, 139)',
+      borderLeft: '2px solid rgb(72, 61, 139)',
       minWidth: '200px',
       maxWidth: '200px',
       height: '200px',
@@ -154,8 +166,8 @@ function Card (props: personObjTypes){
       <div style={{display:'flex', justifyContent: 'space-between'}}>
 
         <div>
-      <h2 style={{opacity: '90%'}}>{props.name}</h2>
-      <p style={{opacity: '70%'}}>{props.job}</p>
+      <h2 style={{opacity: '90%', color: 'rgb(72, 61, 139)'}}>{props.name}</h2>
+      <p style={{opacity: '70%', color: 'rgb(72, 61, 139)'}}>{props.job}</p>
       </div>
 
       <div style={{width:'50px', height:'50px', borderRadius:'50px'}}>
@@ -163,7 +175,7 @@ function Card (props: personObjTypes){
       </div>
 
       </div>
-      <p>Phone: {props.number} </p>
+      <p style={{color: 'rgb(72, 61, 139)'}}>Phone: {props.number} </p>
     </div>
   )
 }

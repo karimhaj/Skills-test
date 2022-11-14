@@ -55,7 +55,7 @@ const LoginPage = () => {
             border: '1px solid rgb(200,200,200)',
             padding: '20px 20px 50px',
             borderRadius: '10px',
-            marginTop: '50px',
+            marginTop: '100px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

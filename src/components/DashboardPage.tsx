@@ -7,7 +7,6 @@ import {
   XAxis, 
   Tooltip, 
   Legend, 
-  ResponsiveContainer, 
   Radar,
   RadarChart,
   PolarGrid,
@@ -51,32 +50,27 @@ return (<div>
             flexDirection: 'column',
             margin: '50px'
     }}>
-{/*
-    <h1 style={{marginBottom: '0px'}}>Dashboard Page</h1>
-    <p style={{marginTop: '0px'}}>subtitle for the dash</p> */}
-
-    <div style={{display: 'flex'}}>
-
-        </div>
 
     <Grid container
     direction='row'
     justifyContent='center'
     alignItems='center'
+    border='1px solid red'
     spacing={4}>
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={4} border='1px solid red'>
     <Box sx={{
-      borderBottom: '3px solid rgb(72, 61, 139)',
-      borderLeft: '3px solid rgb(72, 61, 139)',
-      backgroundColor: 'rgb(247, 245, 255)',
+      borderBottom: '3px solid rgb(0, 0, 0)',
+      borderLeft: '3px solid rgb(0, 0, 0)',
+      backgroundColor: 'primary.main',
+      color: 'rgb(247, 245, 255)',
       padding: '10px 30px 10px 10px',
       borderRadius: '15px',
       width: 'max-content'
     }}>
-        <Typography component='h1' variant='h4' sx={{color: 'primary.main'}}>
+        <Typography component='h1' variant='h4'>
             Dashboard
         </Typography>
-        <Typography component='p' sx={{color: 'primary.main', opacity: '80%'}}>
+        <Typography component='p' sx={{opacity: '80%'}}>
             our work, our priority
         </Typography>
     </Box>
@@ -84,20 +78,20 @@ return (<div>
   <Grid item xs={12} sm={6} md={8}>
 
   </Grid>
-  <Grid item xs={12} sm={12} md={6}>
+  <Grid item xs={12} sm={12} md={6} border='1px solid red'>
   <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
   <LineChart width={700} height={500} data={lineChartData}>
-      <Line type="monotone" dataKey="firstCompany" stroke="red" />
-      <Line type="monotone" dataKey="secondCompany" stroke="#8884d8" />
-      <CartesianGrid stroke="gray" />
+      <Line type='monotone' dataKey='firstCompany' stroke='red' />
+      <Line type='monotone' dataKey='secondCompany' stroke='#8884d8' />
+      <CartesianGrid stroke='gray' />
       <YAxis />
       <Tooltip />
       <Legend />
-      <XAxis dataKey="name" />
+      <XAxis dataKey='name' />
     </LineChart>
     </div>
   </Grid>
-  <Grid item xs={12} sm={6} md={6}>
+  <Grid item xs={12} sm={6} md={6} border='1px solid red'>
     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
  <RadarChart
       cx={300}
@@ -108,13 +102,13 @@ return (<div>
       data={radarChartData}
     >
       <PolarGrid />
-      <PolarAngleAxis dataKey="subject" />
+      <PolarAngleAxis dataKey='subject' />
       <PolarRadiusAxis />
       <Radar
-        name="Mike"
-        dataKey="A"
-        stroke="#8884d8"
-        fill="#8884d8"
+        name='Mike'
+        dataKey='A'
+        stroke='8884d8'
+        fill='#8884d8'
         fillOpacity={0.6}
       />
     </RadarChart>
@@ -149,12 +143,12 @@ return (<div>
 
 
 
-function Card (props: personObjTypes){
+const Card = (props: personObjTypes) =>{
 
 
   return(
-    <div style={{
-      backgroundColor: 'rgb(247, 245, 255)',
+    <Box sx={{
+      backgroundColor: 'rgb(240, 240, 255)',
       borderBottom: '3px solid rgb(72, 61, 139)',
       borderLeft: '2px solid rgb(72, 61, 139)',
       minWidth: '200px',
@@ -176,7 +170,7 @@ function Card (props: personObjTypes){
 
       </div>
       <p style={{color: 'rgb(72, 61, 139)'}}>Phone: {props.number} </p>
-    </div>
+    </Box>
   )
 }
 

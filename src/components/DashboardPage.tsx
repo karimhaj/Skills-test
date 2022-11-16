@@ -7,12 +7,20 @@ import {
   XAxis, 
   Tooltip, 
   Legend, 
+  ResponsiveContainer,
   Radar,
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis } from 'recharts';
-import { CssBaseline, Grid, createTheme, ThemeProvider, Box, Typography } from '@mui/material';
+import { 
+  CssBaseline, 
+  Grid, 
+  createTheme, 
+  ThemeProvider, 
+  Box, 
+  Typography
+ } from '@mui/material';
 import peopleList from '../data/contactList';
 import { lineChartData, radarChartData } from '../data/chartData'; 
 
@@ -48,16 +56,19 @@ return (<div>
     <Box sx={{
             display: 'flex',
             flexDirection: 'column',
-            margin: '50px'
+            marginTop: '40px'
     }}>
 
     <Grid container
     direction='row'
     justifyContent='center'
-    alignItems='center'
-    border='1px solid red'
     spacing={4}>
-    <Grid item xs={12} sm={6} md={4} border='1px solid red'>
+
+    <Grid item xs={12} sm={4} md={3} sx={{
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  }}>
     <Box sx={{
       borderBottom: '3px solid rgb(0, 0, 0)',
       borderLeft: '3px solid rgb(0, 0, 0)',
@@ -74,13 +85,25 @@ return (<div>
             our work, our priority
         </Typography>
     </Box>
+    {
+      peopleList.map((item)=>
+        <Card
+        key={`${item.id}`}
+        name={item.name}
+        picture={item.picture}
+        job={item.job}
+        number={item.number}
+        />)
+    }
   </Grid>
-  <Grid item xs={12} sm={6} md={8}>
 
-  </Grid>
-  <Grid item xs={12} sm={12} md={6} border='1px solid red'>
-  <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-  <LineChart width={700} height={500} data={lineChartData}>
+  <Grid item xs={12} sm={8} md={9} sx={{
+    display: 'flex',
+    flexDirection: {md: 'row', xs: 'column'},
+  }}>
+
+<ResponsiveContainer width='80%' aspect={1}>
+  <LineChart width={500} height={500} data={lineChartData}>
       <Line type='monotone' dataKey='firstCompany' stroke='red' />
       <Line type='monotone' dataKey='secondCompany' stroke='#8884d8' />
       <CartesianGrid stroke='gray' />
@@ -89,19 +112,16 @@ return (<div>
       <Legend />
       <XAxis dataKey='name' />
     </LineChart>
-    </div>
-  </Grid>
-  <Grid item xs={12} sm={6} md={6} border='1px solid red'>
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
- <RadarChart
+  </ResponsiveContainer>
+
+    <ResponsiveContainer width='100%' aspect={1/2}>
+    <RadarChart
       cx={300}
       cy={250}
       outerRadius={150}
-      width={600}
-      height={500}
       data={radarChartData}
     >
-      <PolarGrid />
+      <PolarGrid/>
       <PolarAngleAxis dataKey='subject' />
       <PolarRadiusAxis />
       <Radar
@@ -112,10 +132,11 @@ return (<div>
         fillOpacity={0.6}
       />
     </RadarChart>
-    </div>
+    </ResponsiveContainer>
+
  </Grid>
 
-  <Grid item xs={12} sm={12} md={12}>
+  {/* <Grid item xs={12} sm={12} md={12}>
   <Box sx={{display:{md: 'flex', xs: 'flex'}, 
   flexDirection:{md: 'row', xs: 'column'}, 
   alignItem:{md: 'center', xs: 'center'},
@@ -132,7 +153,7 @@ return (<div>
         />)
     }
     </Box>
-  </Grid>
+  </Grid> */}
 
     </Grid>
 
@@ -145,7 +166,6 @@ return (<div>
 
 const Card = (props: personObjTypes) =>{
 
-
   return(
     <Box sx={{
       backgroundColor: 'rgb(240, 240, 255)',
@@ -155,7 +175,7 @@ const Card = (props: personObjTypes) =>{
       maxWidth: '200px',
       height: '200px',
       padding: '15px',
-      margin: '10px',
+      marginTop:{md: '20px', xs: '0'},
       borderRadius: '10px'}}>
       <div style={{display:'flex', justifyContent: 'space-between'}}>
 
@@ -164,12 +184,12 @@ const Card = (props: personObjTypes) =>{
       <p style={{opacity: '70%', color: 'rgb(72, 61, 139)'}}>{props.job}</p>
       </div>
 
-      <div style={{width:'50px', height:'50px', borderRadius:'50px'}}>
+      <div style={{width:'40px', height:'50px', borderRadius:'40px'}}>
       <img src={props.picture} alt='propic' style={{width: '50px', borderRadius: '50px', objectFit: 'contain', border: '2px solid rgb(255,255,255)'}}/>
       </div>
 
       </div>
-      <p style={{color: 'rgb(72, 61, 139)'}}>Phone: {props.number} </p>
+      <p style={{color: 'rgb(72, 61, 139)', marginTop: '0'}}>Phone: {props.number} </p>
     </Box>
   )
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import {   
   LineChart, 
   Line, 
@@ -49,7 +50,25 @@ const themeOptions = {
 
 const theme = createTheme(themeOptions);
 
+const url = 'https://run.mocky.io/v3/026acf14-78aa-4dbc-855e-16eacd0c5bc0';
+
+async function fetcher(url : string){
+  try{
+    const fetchData = await fetch(url);
+    //const dataJson = await fetchData.json();
+    console.log(fetchData); 
+    return fetchData;
+    }
+    catch(e){
+      console.log(e);
+    }
+}; 
+
 const Dashboard = () =>{
+  useEffect(()=>{
+    fetcher(url)
+  }, [])
+
 return (<div>
     <ThemeProvider theme={theme}>
     <CssBaseline />
@@ -100,6 +119,7 @@ return (<div>
   <Grid item xs={12} sm={8} md={9} sx={{
     display: 'flex',
     flexDirection: {md: 'row', xs: 'column'},
+    alignItems: {xs: 'center'}
   }}>
 
 <ResponsiveContainer width='80%' aspect={1}>
@@ -114,7 +134,7 @@ return (<div>
     </LineChart>
   </ResponsiveContainer>
 
-    <ResponsiveContainer width='100%' aspect={1/2}>
+    <ResponsiveContainer width='100%' aspect={1/1}>
     <RadarChart
       cx={300}
       cy={250}
@@ -136,24 +156,6 @@ return (<div>
 
  </Grid>
 
-  {/* <Grid item xs={12} sm={12} md={12}>
-  <Box sx={{display:{md: 'flex', xs: 'flex'}, 
-  flexDirection:{md: 'row', xs: 'column'}, 
-  alignItem:{md: 'center', xs: 'center'},
-  justifyContent:{md: 'center', xs: 'center'}
-   }}>
-  {
-      peopleList.map((item)=>
-        <Card
-        key={`${item.id}`}
-        name={item.name}
-        picture={item.picture}
-        job={item.job}
-        number={item.number}
-        />)
-    }
-    </Box>
-  </Grid> */}
 
     </Grid>
 
@@ -175,7 +177,7 @@ const Card = (props: personObjTypes) =>{
       maxWidth: '200px',
       height: '200px',
       padding: '15px',
-      marginTop:{md: '20px', xs: '0'},
+      marginTop:{md: '20px', xs: '10px'},
       borderRadius: '10px'}}>
       <div style={{display:'flex', justifyContent: 'space-between'}}>
 

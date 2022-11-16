@@ -13,7 +13,10 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis } from 'recharts';
+  PolarRadiusAxis,
+  BarChart,
+  Bar
+ } from 'recharts';
 import { 
   CssBaseline, 
   Grid, 
@@ -23,7 +26,7 @@ import {
   Typography
  } from '@mui/material';
 import peopleList from '../data/contactList';
-import { lineChartData, radarChartData } from '../data/chartData'; 
+import { lineChartData, radarChartData, barChartData } from '../data/chartData'; 
 
 
 interface personObjTypes{
@@ -104,6 +107,9 @@ return (<div>
             our work, our priority
         </Typography>
     </Box>
+    <Box sx={{
+      marginBottom: '30px'
+    }}>
     {
       peopleList.map((item)=>
         <Card
@@ -114,14 +120,17 @@ return (<div>
         number={item.number}
         />)
     }
+    </Box>
   </Grid>
 
-  <Grid item xs={12} sm={8} md={9} sx={{
+  <Grid item xs={12} sm={8} md={9}>
+
+<Box sx={{
     display: 'flex',
     flexDirection: {md: 'row', xs: 'column'},
-    alignItems: {xs: 'center'}
+    alignItems: {xs: 'center'},
+    height: 'max-content'
   }}>
-
 <ResponsiveContainer width='80%' aspect={1}>
   <LineChart width={500} height={500} data={lineChartData}>
       <Line type='monotone' dataKey='firstCompany' stroke='red' />
@@ -154,10 +163,25 @@ return (<div>
     </RadarChart>
     </ResponsiveContainer>
 
+    </Box>
+
+    <Box>
+      <ResponsiveContainer width="90%" aspect={3 / 1}>
+        <BarChart data={barChartData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="pv" fill="#8884d8" />
+        <Bar dataKey="uv" fill="#82ca9d" />
+        </BarChart>
+        </ResponsiveContainer>
+    </Box>
  </Grid>
 
-
-    </Grid>
+                            
+  </Grid>
 
     </Box>
     </ThemeProvider>
@@ -187,7 +211,7 @@ const Card = (props: personObjTypes) =>{
       </div>
 
       <div style={{width:'40px', height:'50px', borderRadius:'40px'}}>
-      <img src={props.picture} alt='propic' style={{width: '50px', borderRadius: '50px', objectFit: 'contain', border: '2px solid rgb(255,255,255)'}}/>
+      <img src={props.picture} alt='propic' style={{width: '50px', borderRadius: '50px', objectFit: 'contain'}}/>
       </div>
 
       </div>

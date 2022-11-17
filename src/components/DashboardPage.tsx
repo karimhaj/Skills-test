@@ -53,24 +53,24 @@ const themeOptions = {
 
 const theme = createTheme(themeOptions);
 
-const url = 'https://run.mocky.io/v3/026acf14-78aa-4dbc-855e-16eacd0c5bc0';
+// const url = 'https://run.mocky.io/v3/026acf14-78aa-4dbc-855e-16eacd0c5bc0';
 
-async function fetcher(url : string){
-  try{
-    const fetchData = await fetch(url);
-    //const dataJson = await fetchData.json();
-    console.log(fetchData); 
-    return fetchData;
-    }
-    catch(e){
-      console.log(e);
-    }
-}; 
+// async function fetcher(url : string){
+//   try{
+//     const fetchData = await fetch(url);
+//     const dataJson = await fetchData.json();
+//     console.log(fetchData); 
+//     return fetchData;
+//     }
+//     catch(e){
+//       console.log(e);
+//     }
+// }; 
 
 const Dashboard = () =>{
-  useEffect(()=>{
-    fetcher(url)
-  }, [])
+  // useEffect(()=>{
+  //   fetcher(url)
+  // }, [])
 
 return (<div>
     <ThemeProvider theme={theme}>
@@ -143,15 +143,15 @@ return (<div>
     </LineChart>
   </ResponsiveContainer>
 
-    <ResponsiveContainer width='100%' aspect={1/1}>
+    <ResponsiveContainer width='99%' height='100%' minHeight={500} aspect={1/1} >
     <RadarChart
-      cx={300}
-      cy={250}
-      outerRadius={150}
+      cx='50%'
+      cy='50%'
+      outerRadius='50%'
       data={radarChartData}
     >
       <PolarGrid/>
-      <PolarAngleAxis dataKey='subject' />
+      <PolarAngleAxis dataKey='subject' domain={[0, 100]} />
       <PolarRadiusAxis />
       <Radar
         name='Mike'
@@ -203,23 +203,22 @@ const Card = (props: personObjTypes) =>{
       padding: '15px',
       marginTop:{md: '20px', xs: '10px'},
       borderRadius: '10px'}}>
-      <div style={{display:'flex', justifyContent: 'space-between'}}>
+      <Box style={{display:'flex', justifyContent: 'space-between'}}>
 
-        <div>
+      <Box>
       <h2 style={{opacity: '90%', color: 'rgb(72, 61, 139)'}}>{props.name}</h2>
       <p style={{opacity: '70%', color: 'rgb(72, 61, 139)'}}>{props.job}</p>
-      </div>
+      </Box>
 
-      <div style={{width:'40px', height:'50px', borderRadius:'40px'}}>
+      <Box sx={{width:'40px', height:'50px', borderRadius:'40px', paddingRight: '50px'}}>
       <img src={props.picture} alt='propic' style={{width: '50px', borderRadius: '50px', objectFit: 'contain'}}/>
-      </div>
+      </Box>
 
-      </div>
+      </Box>
       <p style={{color: 'rgb(72, 61, 139)', marginTop: '0'}}>Phone: {props.number} </p>
     </Box>
   )
 }
-
 
 
 export default Dashboard;

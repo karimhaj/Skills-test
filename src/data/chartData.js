@@ -88,4 +88,57 @@ const radarChartData = [
     fullMark: 150
   }
 ];
-export { lineChartData, radarChartData };
+
+const barChartData = [
+  {
+    name: "October",
+    work: 4000,
+    profit: 2400
+  },
+  {
+    name: "November",
+    work: 3000,
+    profit: 1398
+  },
+  {
+    name: "December",
+    work: 7000,
+    profit: 9000
+  },
+  {
+    name: "January",
+    work: 2780,
+    profit: 3908
+  },
+  {
+    name: "February",
+    work: 4800,
+    profit: 4800
+  },
+  {
+    name: "March",
+    work: 2390,
+    profit: 3800
+  },
+  {
+    name: "April",
+    work: 3490,
+    profit: 4300
+  },
+  {
+    name: "May",
+    work: 6000,
+    profit: 2400
+  },
+  {
+    name: "June",
+    work: 8000,
+    profit: 5400
+  },
+  {
+    name: "July",
+    work: 4000,
+    profit: 9800
+  },
+]
+export { lineChartData, radarChartData, barChartData };

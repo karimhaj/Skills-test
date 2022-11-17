@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import {   
   LineChart, 
   Line, 
@@ -7,15 +8,25 @@ import {
   XAxis, 
   Tooltip, 
   Legend, 
-  ResponsiveContainer, 
+  ResponsiveContainer,
   Radar,
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis } from 'recharts';
-import { CssBaseline, Grid, createTheme, ThemeProvider, Box, Typography } from '@mui/material';
+  PolarRadiusAxis,
+  BarChart,
+  Bar
+ } from 'recharts';
+import { 
+  CssBaseline, 
+  Grid, 
+  createTheme, 
+  ThemeProvider, 
+  Box, 
+  Typography
+ } from '@mui/material';
 import peopleList from '../data/contactList';
-import { lineChartData, radarChartData } from '../data/chartData'; 
+import { lineChartData, radarChartData, barChartData } from '../data/chartData'; 
 
 
 interface personObjTypes{
@@ -42,81 +53,64 @@ const themeOptions = {
 
 const theme = createTheme(themeOptions);
 
+const url = 'https://run.mocky.io/v3/026acf14-78aa-4dbc-855e-16eacd0c5bc0';
+
+async function fetcher(url : string){
+  try{
+    const fetchData = await fetch(url);
+    //const dataJson = await fetchData.json();
+    console.log(fetchData); 
+    return fetchData;
+    }
+    catch(e){
+      console.log(e);
+    }
+}; 
+
 const Dashboard = () =>{
+  useEffect(()=>{
+    fetcher(url)
+  }, [])
+
 return (<div>
     <ThemeProvider theme={theme}>
     <CssBaseline />
     <Box sx={{
             display: 'flex',
             flexDirection: 'column',
-            margin: '50px'
+            marginTop: '40px'
     }}>
-{/*
-    <h1 style={{marginBottom: '0px'}}>Dashboard Page</h1>
-    <p style={{marginTop: '0px'}}>subtitle for the dash</p> */}
-
-    <div style={{display: 'flex'}}>
-
-        </div>
 
     <Grid container
     direction='row'
     justifyContent='center'
-    alignItems='center'
     spacing={4}>
-    <Grid item xs={12} sm={6} md={4}>
-    <div>
-        <Typography component='h1' variant='h4' sx={{color: 'primary.main'}}>
+
+    <Grid item xs={12} sm={4} md={3} sx={{
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  }}>
+    <Box sx={{
+      borderBottom: '3px solid rgb(0, 0, 0)',
+      borderLeft: '3px solid rgb(0, 0, 0)',
+      backgroundColor: 'primary.main',
+      color: 'rgb(247, 245, 255)',
+      padding: '10px 30px 10px 10px',
+      borderRadius: '15px',
+      width: 'max-content'
+    }}>
+        <Typography component='h1' variant='h4'>
             Dashboard
         </Typography>
-        <Typography component='p'>
+        <Typography component='p' sx={{opacity: '80%'}}>
             our work, our priority
         </Typography>
-    </div>
-  </Grid>
-  <Grid item xs={12} sm={6} md={8}>
-
-  </Grid>
-  <Grid item xs={12} sm={12} md={6}>
-  <div>
-  <LineChart width={700} height={500} data={lineChartData}>
-      <Line type="monotone" dataKey="firstCompany" stroke="red" />
-      <Line type="monotone" dataKey="secondCompany" stroke="#8884d8" />
-      <CartesianGrid stroke="gray" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <XAxis dataKey="name" />
-    </LineChart>
-    </div>
-  </Grid>
-  <Grid item xs={12} sm={6} md={6}>
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
- <RadarChart
-      cx={300}
-      cy={250}
-      outerRadius={150}
-      width={600}
-      height={500}
-      data={radarChartData}
-    >
-      <PolarGrid />
-      <PolarAngleAxis dataKey="subject" />
-      <PolarRadiusAxis />
-      <Radar
-        name="Mike"
-        dataKey="A"
-        stroke="#8884d8"
-        fill="#8884d8"
-        fillOpacity={0.6}
-      />
-    </RadarChart>
-    </div>
- </Grid>
-
-  <Grid item xs={12} sm={12} md={12}>
-  <div style={{display: 'flex'}}>
-  {
+    </Box>
+    <Box sx={{
+      marginBottom: '30px'
+    }}>
+    {
       peopleList.map((item)=>
         <Card
         key={`${item.id}`}
@@ -126,10 +120,68 @@ return (<div>
         number={item.number}
         />)
     }
-    </div>
+    </Box>
   </Grid>
 
-    </Grid>
+  <Grid item xs={12} sm={8} md={9}>
+
+<Box sx={{
+    display: 'flex',
+    flexDirection: {md: 'row', xs: 'column'},
+    alignItems: {xs: 'center'},
+    height: 'max-content'
+  }}>
+<ResponsiveContainer width='80%' aspect={1}>
+  <LineChart width={500} height={500} data={lineChartData}>
+      <Line type='monotone' dataKey='firstCompany' stroke='#F5765F' />
+      <Line type='monotone' dataKey='secondCompany' stroke='#8884d8' />
+      <CartesianGrid stroke='gray' />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <XAxis dataKey='name' />
+    </LineChart>
+  </ResponsiveContainer>
+
+    <ResponsiveContainer width='100%' aspect={1/1}>
+    <RadarChart
+      cx={300}
+      cy={250}
+      outerRadius={150}
+      data={radarChartData}
+    >
+      <PolarGrid/>
+      <PolarAngleAxis dataKey='subject' />
+      <PolarRadiusAxis />
+      <Radar
+        name='Mike'
+        dataKey='A'
+        stroke='8884d8'
+        fill='#8884d8'
+        fillOpacity={0.6}
+      />
+    </RadarChart>
+    </ResponsiveContainer>
+
+    </Box>
+
+    <Box>
+      <ResponsiveContainer width='90%' aspect={3 / 1}>
+        <BarChart data={barChartData}>
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='name' />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey='work' fill='#483d8b' />
+        <Bar dataKey='profit' fill='#F5765F' />
+        </BarChart>
+        </ResponsiveContainer>
+    </Box>
+ </Grid>
+
+                            
+  </Grid>
 
     </Box>
     </ThemeProvider>
@@ -138,33 +190,33 @@ return (<div>
 
 
 
-function Card (props: personObjTypes){
-
+const Card = (props: personObjTypes) =>{
 
   return(
-    <div style={{
-      backgroundColor: 'rgb(230,235,240)',
-      borderBottom: '3px solid rgb(200,200,200)',
+    <Box sx={{
+      backgroundColor: 'rgb(240, 240, 255)',
+      borderBottom: '3px solid rgb(72, 61, 139)',
+      borderLeft: '2px solid rgb(72, 61, 139)',
       minWidth: '200px',
       maxWidth: '200px',
       height: '200px',
       padding: '15px',
-      margin: '10px',
+      marginTop:{md: '20px', xs: '10px'},
       borderRadius: '10px'}}>
       <div style={{display:'flex', justifyContent: 'space-between'}}>
 
         <div>
-      <h2 style={{opacity: '90%'}}>{props.name}</h2>
-      <p style={{opacity: '70%'}}>{props.job}</p>
+      <h2 style={{opacity: '90%', color: 'rgb(72, 61, 139)'}}>{props.name}</h2>
+      <p style={{opacity: '70%', color: 'rgb(72, 61, 139)'}}>{props.job}</p>
       </div>
 
-      <div style={{width:'50px', height:'50px', borderRadius:'50px'}}>
-      <img src={props.picture} alt='propic' style={{width: '50px', borderRadius: '50px', objectFit: 'contain', border: '2px solid rgb(255,255,255)'}}/>
+      <div style={{width:'40px', height:'50px', borderRadius:'40px'}}>
+      <img src={props.picture} alt='propic' style={{width: '50px', borderRadius: '50px', objectFit: 'contain'}}/>
       </div>
 
       </div>
-      <p>Phone: {props.number} </p>
-    </div>
+      <p style={{color: 'rgb(72, 61, 139)', marginTop: '0'}}>Phone: {props.number} </p>
+    </Box>
   )
 }
 

@@ -31,6 +31,32 @@ const themeOptions = {
     },
   };
 
+
+  const customStyles = {
+    rows: {
+        style: {
+            minHeight: '50px', // override the row height
+        },
+    },
+    headCells: {
+        style: {
+            paddingLeft: '20px', // override the cell padding for head cells
+            paddingRight: '20px',
+            fontSize: '18px',
+            fontWeight: 'bold',
+            backgroundColor: '#483d8b',
+            color: 'white'
+        },
+    },
+    cells: {
+        style: {
+            paddingLeft: '20px', // override the cell padding for data cells
+            paddingRight: '20px',
+            fontSize: '14px'
+        },
+    },
+};
+
 const theme = createTheme(themeOptions);
 
 const TablePage = () =>{
@@ -74,18 +100,32 @@ const TablePage = () =>{
         <Box sx={{
             margin:{md: '20px', xs: '10px'}
         }}>
+        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
         <Typography component='h1' variant='h4' sx={{
             color: 'primary.main',
             mb: '20px'}}>Table page</Typography>
-        <input type='number' value={searchedText} onChange={(e: React.FormEvent<HTMLInputElement>)=>{
-        setSearchedText(e.currentTarget.value)}} placeholder='search calendar date...' />
+        <input type='number' value={searchedText} 
+        onChange={(e: React.FormEvent<HTMLInputElement>)=>{
+        setSearchedText(e.currentTarget.value)}} 
+        placeholder='search calendar date...' 
+        style={{
+        height: '30px', 
+        padding: '5px', 
+        borderRadius: '7px', 
+        border: '2px solid #483d8b'}}/>
+
+        </Box>
+
+        <Box sx={{mt: '10px', border: '1px solid gray'}}>
         <DataTable
             columns={columns}
             data={filteredData}
             pagination
             noDataComponent={<p>Loading data...</p>}
             responsive
+            customStyles={customStyles}
         />
+        </Box>
         </Box>
         </ThemeProvider>
     </div>);

@@ -91,54 +91,54 @@ const radarChartData = [
 
 const barChartData = [
   {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400
+    name: "October",
+    work: 4000,
+    profit: 2400
   },
   {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398
+    name: "November",
+    work: 3000,
+    profit: 1398
   },
   {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800
+    name: "December",
+    work: 7000,
+    profit: 9000
   },
   {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908
+    name: "January",
+    work: 2780,
+    profit: 3908
   },
   {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800
+    name: "February",
+    work: 4800,
+    profit: 4800
   },
   {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800
+    name: "March",
+    work: 2390,
+    profit: 3800
   },
   {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300
+    name: "April",
+    work: 3490,
+    profit: 4300
   },
   {
-    name: "Page H",
-    uv: 4000,
-    pv: 2400
+    name: "May",
+    work: 6000,
+    profit: 2400
   },
   {
-    name: "Page I",
-    uv: 3000,
-    pv: 1398
+    name: "June",
+    work: 8000,
+    profit: 5400
   },
   {
-    name: "Page J",
-    uv: 2000,
-    pv: 9800
+    name: "July",
+    work: 4000,
+    profit: 9800
   },
 ]
 export { lineChartData, radarChartData, barChartData };

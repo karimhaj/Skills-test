@@ -133,7 +133,7 @@ return (<div>
   }}>
 <ResponsiveContainer width='80%' aspect={1}>
   <LineChart width={500} height={500} data={lineChartData}>
-      <Line type='monotone' dataKey='firstCompany' stroke='red' />
+      <Line type='monotone' dataKey='firstCompany' stroke='#F5765F' />
       <Line type='monotone' dataKey='secondCompany' stroke='#8884d8' />
       <CartesianGrid stroke='gray' />
       <YAxis />
@@ -166,15 +166,15 @@ return (<div>
     </Box>
 
     <Box>
-      <ResponsiveContainer width="90%" aspect={3 / 1}>
+      <ResponsiveContainer width='90%' aspect={3 / 1}>
         <BarChart data={barChartData}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='name' />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="pv" fill="#8884d8" />
-        <Bar dataKey="uv" fill="#82ca9d" />
+        <Bar dataKey='work' fill='#483d8b' />
+        <Bar dataKey='profit' fill='#F5765F' />
         </BarChart>
         </ResponsiveContainer>
     </Box>

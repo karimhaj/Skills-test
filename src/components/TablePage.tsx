@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import DataTable, { TableColumn } from 'react-data-table-component';
-import { useState } from "react";
-import { CssBaseline } from "@mui/material";
+import { TableData } from '../data/chartData';
+import { 
+    CssBaseline, 
+    Grid, 
+    createTheme, 
+    ThemeProvider, 
+    Box, 
+    Typography
+   } from '@mui/material';
 
 interface DataRow {
     id: number;
@@ -12,8 +19,24 @@ interface DataRow {
     valore3: number; 
 }
 
+const themeOptions = {
+    palette: {
+      type: 'light',
+      primary: {
+        main: '#483d8b',
+      },
+      secondary: {
+        main: '#8a2be2 ',
+      }
+    },
+  };
+
+const theme = createTheme(themeOptions);
+
 const TablePage = () =>{
 
+    const [tableData, setTableData] = useState([]);
+    const [searchedText, setSearchedText] = useState('');
 
     const columns: TableColumn<DataRow>[] = [
         {
@@ -41,97 +64,31 @@ const TablePage = () =>{
             selector: row => row.valore3,
         },
     ];
+
+    let filteredData = TableData?.filter((item)=> item.data?.toLowerCase().includes(searchedText.toLowerCase()));
     
-    const data = [
-        {
-            id: 1,
-            descrizione: 'Prova 1',
-            data: '12-11-2022',
-            valore1: 276,
-            valore2: 863,
-            valore3: 655
-        },
-        {
-            id: 2,
-            descrizione: 'Prova 2',
-            data: '12-11-2022',
-            valore1: 749,
-            valore2: 246,
-            valore3: 100
-        },
-        {
-            id: 3,
-            descrizione: 'Prova 3',
-            data: '13-11-2022',
-            valore1: 560,
-            valore2: 991,
-            valore3: 637
-        },
-        {
-            id: 4,
-            descrizione: 'Prova 4',
-            data: '13-11-2022',
-            valore1: 238,
-            valore2: 299,
-            valore3: 700
-        },  {
-            id: 5,
-            descrizione: 'Prova 5',
-            data: '13-11-2022',
-            valore1: 650,
-            valore2: 30,
-            valore3: 177
-        },
-        {
-            id: 6,
-            descrizione: 'Prova 6',
-            data: '14-11-2022',
-            valore1: 600,
-            valore2: 480,
-            valore3: 200
-        },
-        {
-            id: 7,
-            descrizione: 'Prova 7',
-            data: '15-11-2022',
-            valore1: 500,
-            valore2: 127,
-            valore3: 98
-        },
-        {
-            id: 8,
-            descrizione: 'Prova 8',
-            data: '15-11-2022',
-            valore1: 562,
-            valore2: 372,
-            valore3: 15
-        },
-        {
-            id: 9,
-            descrizione: 'Prova 9',
-            data: '16-11-2022',
-            valore1: 949,
-            valore2: 354,
-            valore3: 277
-        },
-        {
-            id: 10,
-            descrizione: 'Prova 10',
-            data: '17-11-2022',
-            valore1: 300,
-            valore2: 725,
-            valore3: 408
-        }
-    ]
 
     return(<div>
+        <ThemeProvider theme={theme}>
         <CssBaseline />
-        <h1>table</h1>
+        <Box sx={{
+            margin:{md: '20px', xs: '10px'}
+        }}>
+        <Typography component='h1' variant='h4' sx={{
+            color: 'primary.main',
+            mb: '20px'}}>Table page</Typography>
+        <input type='number' value={searchedText} onChange={(e: React.FormEvent<HTMLInputElement>)=>{
+        setSearchedText(e.currentTarget.value)}} placeholder='search calendar date...' />
         <DataTable
             columns={columns}
-            data={data}
+            data={filteredData}
+            pagination
+            noDataComponent={<p>Loading data...</p>}
+            responsive
         />
-    </div>)
+        </Box>
+        </ThemeProvider>
+    </div>);
 };
 
 export default TablePage; 

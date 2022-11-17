@@ -140,5 +140,87 @@ const barChartData = [
     work: 4000,
     profit: 9800
   },
-]
-export { lineChartData, radarChartData, barChartData };
+];
+
+const TableData = [
+  {
+      id: 1,
+      descrizione: 'Prova 1',
+      data: '12-11-2022',
+      valore1: 276,
+      valore2: 863,
+      valore3: 655
+  },
+  {
+      id: 2,
+      descrizione: 'Prova 2',
+      data: '12-11-2022',
+      valore1: 749,
+      valore2: 246,
+      valore3: 100
+  },
+  {
+      id: 3,
+      descrizione: 'Prova 3',
+      data: '13-11-2022',
+      valore1: 560,
+      valore2: 991,
+      valore3: 637
+  },
+  {
+      id: 4,
+      descrizione: 'Prova 4',
+      data: '13-11-2022',
+      valore1: 238,
+      valore2: 299,
+      valore3: 700
+  },  {
+      id: 5,
+      descrizione: 'Prova 5',
+      data: '13-11-2022',
+      valore1: 650,
+      valore2: 30,
+      valore3: 177
+  },
+  {
+      id: 6,
+      descrizione: 'Prova 6',
+      data: '14-11-2022',
+      valore1: 600,
+      valore2: 480,
+      valore3: 200
+  },
+  {
+      id: 7,
+      descrizione: 'Prova 7',
+      data: '15-11-2022',
+      valore1: 500,
+      valore2: 127,
+      valore3: 98
+  },
+  {
+      id: 8,
+      descrizione: 'Prova 8',
+      data: '15-11-2022',
+      valore1: 562,
+      valore2: 372,
+      valore3: 15
+  },
+  {
+      id: 9,
+      descrizione: 'Prova 9',
+      data: '16-11-2022',
+      valore1: 949,
+      valore2: 354,
+      valore3: 277
+  },
+  {
+      id: 10,
+      descrizione: 'Prova 10',
+      data: '17-11-2022',
+      valore1: 300,
+      valore2: 725,
+      valore3: 408
+  }
+];
+export { lineChartData, radarChartData, barChartData, TableData};
